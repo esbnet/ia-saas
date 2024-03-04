@@ -7,6 +7,7 @@ export const i18n = {
   defaultLocale,
   locales,
   localeDetection: true,
+  publicRoutes: ["/"],
 };
 
 export type Locale = (typeof langs)[number];

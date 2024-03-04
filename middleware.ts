@@ -1,8 +1,9 @@
-import { i18n } from "@/i18n";
-import createMiddleware from "next-intl/middleware";
+import { authMiddleware } from "@clerk/nextjs";
 
-export default createMiddleware(i18n);
+export default authMiddleware({
+  publicRoutes: ["/", "/api/webhook"],
+});
 
 export const config = {
-  matcher: ["/((?!api|_next|.*\\..*).*)"],
+  matcher: ["/((?!.*\\..*|_next).*)", "/", "/(api|trpc)(.*)"],
 };
