@@ -1,17 +1,18 @@
-import { i18n } from "@/i18n";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
+import { ClerkProvider } from "@clerk/nextjs";
+
 const inter = Inter({ subsets: ["latin"] });
 
-export async function generateStaticParams() {
-  const languages = i18n.locales.map((locale) => ({
-    locale,
-  }));
+// export async function generateStaticParams() {
+//   const languages = i18n.locales.map((locale) => ({
+//     locale,
+//   }));
 
-  return languages;
-}
+//   return languages;
+// }
 
 export const metadata: Metadata = {
   title: "Genius",
@@ -20,14 +21,14 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  params,
 }: Readonly<{
   children: React.ReactNode;
-  params: { locale: string };
 }>) {
   return (
-    <html lang={params.locale}>
-      <body className={inter.className}>{children}</body>
-    </html>
+    <ClerkProvider>
+      <html lang="pt-BR">
+        <body className={inter.className}>{children}</body>
+      </html>
+    </ClerkProvider>
   );
 }
