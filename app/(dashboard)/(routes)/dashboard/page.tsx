@@ -70,7 +70,7 @@ export default function Dashboard() {
             key={tool.href}
           >
             <div className="flex items-center space-x-4">
-              <div className={cn("p-2 w-fit rounded-md", tool.color)}>
+              <div className={cn("p-2 w-fit rounded-md", tool.bgColor)}>
                 <tool.icon className={cn("w-8 h-8", tool.color)} />
               </div>
               <div className="font-semibold">{tool.label}</div>
