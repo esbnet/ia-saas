@@ -35,41 +35,42 @@ const routes = [
   {
     label: "Image Generation",
     icon: ImageIcon,
-    color: "text-pink-700",
     href: "/image",
+    color: "text-pink-700",
   },
   {
     label: "Video Generation",
     icon: VideoIcon,
-    color: "text-orange-700",
     href: "/video",
+    color: "text-orange-700",
   },
   {
     label: "Music Generation",
     icon: Music,
-    color: "text-emerald-500",
     href: "/music",
+    color: "text-emerald-500",
   },
   {
     label: "Code Generation",
     icon: Code,
-    color: "text-green-700",
     href: "/code",
+    color: "text-green-700",
   },
   {
     label: "Settings",
     icon: Settings,
     href: "/settings",
+    // color: "text-zinc-400",
   },
 ];
 
-export const Sidebar = ({
+export function Sidebar({
   apiLimitCount = 0,
   isPro = false,
 }: {
   apiLimitCount: number;
   isPro: boolean;
-}) => {
+}) {
   const pathname = usePathname();
 
   return (
@@ -106,4 +107,4 @@ export const Sidebar = ({
       <FreeCounter apiLimitCount={apiLimitCount} isPro={isPro} />
     </div>
   );
-};
+}

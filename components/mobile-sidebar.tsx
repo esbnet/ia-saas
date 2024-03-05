@@ -7,13 +7,13 @@ import { Sidebar } from "@/components/sidebar";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
-export const MobileSidebar = ({
+export function MobileSidebar({
   apiLimitCount = 0,
   isPro = false,
 }: {
   apiLimitCount: number;
   isPro: boolean;
-}) => {
+}) {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -36,4 +36,4 @@ export const MobileSidebar = ({
       </SheetContent>
     </Sheet>
   );
-};
+}
