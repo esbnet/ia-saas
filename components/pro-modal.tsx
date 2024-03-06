@@ -19,7 +19,7 @@ import {
 import { tools } from "@/constants";
 // import { useProModal } from "@/hooks/use-pro-modal";
 import { cn } from "@/lib/utils";
-import { useProModal } from "../hooks/use-pro-modal";
+import {useProModal} from "@/app/hooks/use-pro-modal";
 
 export const ProModal = () => {
   const proModal = useProModal();
