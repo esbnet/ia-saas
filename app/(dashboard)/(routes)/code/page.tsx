@@ -13,11 +13,10 @@ import UserAvatar from "@/components/user-avatar";
 import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
-import { MessageSquare } from "lucide-react";
+import { Code } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 
 import { useForm } from "react-hook-form";
 
@@ -29,7 +28,7 @@ type userMessage = {
   content: string;
 };
 
-export default function Conversation() {
+export default function CodePage() {
   const [messages, setMessages] = useState<userMessage[]>([]);
   const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
@@ -50,7 +49,7 @@ export default function Conversation() {
 
       const newMessages = [...messages, userMessage];
 
-      const response = await axios.post("/api/conversation", {
+      const response = await axios.post("/api/code", {
         messages: newMessages,
       });
 
@@ -73,11 +72,11 @@ export default function Conversation() {
   return (
     <div>
       <Heading
-        title="Conversation"
-        description="Our most advanced conversational model"
-        icon={MessageSquare}
-        iconColor="text-violet-500"
-        bgColor="bg-violet-500/10"
+        title="Code Generation"
+        description="Generate code with the power of AI"
+        icon={Code}
+        iconColor="text-green-700"
+        bgColor="bg-green-700/10"
       />
       <div className="px-4 lg:px-8">
         <div>
@@ -95,7 +94,7 @@ export default function Conversation() {
                         className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent
                       "
                         disabled={isLoading}
-                        placeholder="How can I help you?"
+                        placeholder="Simple toggle button using react hooks."
                         {...field}
                       />
                     </FormControl>
@@ -134,10 +133,7 @@ export default function Conversation() {
                 )}
               >
                 {message.role === "user" ? <UserAvatar /> : <BotAvatar />}
-                {/* <p className="text-sm ">{message.content} </p> */}
-
                 <ReactMarkdown
-                  remarkPlugins={[remarkGfm]}
                   components={{
                     pre: ({ node, ...props }) => (
                       <div className="overflow-auto w-full my-2 bg-black/10 p-2 rounded-lg">
