@@ -19,10 +19,14 @@ import {
 } from "@/components/ui/select";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
-import { Image } from "lucide-react";
+
 import { useRouter } from "next/navigation";
 
+import { Card, CardFooter } from "@/components/ui/card";
+import Image from "next/image";
 import { amountOptions, formSchema, resolutionOptions } from "./constants";
+
+import { Download, Image as ImageIcon } from "lucide-react";
 
 type userMessage = {
   role: "user";
@@ -68,7 +72,7 @@ export default function ImagePage() {
       <Heading
         title="Image Generation"
         description="Turn our prompt into an image."
-        icon={Image}
+        icon={ImageIcon}
         iconColor="text-pink-700"
         bgColor="bg-pink-700/10"
       />
@@ -170,7 +174,35 @@ export default function ImagePage() {
           {images.length === 0 && !isLoading && (
             <Empty label="No images generated." />
           )}
-          <div>Images will be rendered here</div>
+          <div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8"
+            style={{
+              gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+            }}
+          >
+            {images.map((source, index) => (
+              <Card key={index} className="rounded-lg overflow-hidden">
+                <div className="relative aspect-square">
+                  <Image
+                    src={source}
+                    alt="Image"
+                    className="rounded-lg "
+                    fill
+                  />
+                </div>
+                <CardFooter className="p-2">
+                  <Button
+                    variant="secondary"
+                    className="w-full"
+                    onClick={() => window.open(source)}
+                  >
+                    <Download className="w-4 h-4 mr-2" />
+                    Download
+                  </Button>
+                </CardFooter>
+              </Card>
+            ))}
+          </div>
         </div>
       </div>
     </div>
