@@ -13,7 +13,7 @@ import UserAvatar from "@/components/user-avatar";
 import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
-import { MessageSquare } from "lucide-react";
+import { Video } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 import ReactMarkdown from "react-markdown";
@@ -73,11 +73,11 @@ export default function Conversation() {
   return (
     <div>
       <Heading
-        title="Conversation"
-        description="Our most advanced conversational model"
-        icon={MessageSquare}
-        iconColor="text-violet-500"
-        bgColor="bg-violet-500/10"
+        title="Video Generation"
+        description=""
+        icon={Video}
+        iconColor="text-red-500"
+        bgColor="bg-red-500/10"
       />
       <div className="px-4 lg:px-8">
         <div>
@@ -134,6 +134,7 @@ export default function Conversation() {
                 )}
               >
                 {message.role === "user" ? <UserAvatar /> : <BotAvatar />}
+                {/* <p className="text-sm ">{message.content} </p> */}
 
                 <ReactMarkdown
                   remarkPlugins={[remarkGfm]}
