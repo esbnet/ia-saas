@@ -15,11 +15,14 @@ import { useRouter } from "next/navigation";
 
 import { useForm } from "react-hook-form";
 
+import { useProModal } from "@/app/hooks/use-pro-modal";
 import { Music } from "lucide-react";
 import * as z from "zod";
 import { formSchema } from "./constants";
 
 export default function MusicPage() {
+  const proModal = useProModal();
+
   const [music, setMusic] = useState<string>();
 
   const router = useRouter();
@@ -41,8 +44,11 @@ export default function MusicPage() {
       setMusic(response.data.audio);
 
       form.reset();
-    } catch (error) {
-      // TODO: Open Pro Modal
+    } catch (error: any) {
+      if (error?.response?.status === 403) {
+        proModal.onOpen();
+      }
+
       console.log(error);
     } finally {
       // form.reset();

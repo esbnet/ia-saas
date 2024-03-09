@@ -33,6 +33,7 @@
     "remark-gfm": "^4.0.0",
     "replicate": "^0.27.1",
     "server-only": "^0.0.1",
+    "stripe": "^14.20.0",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.22.4",

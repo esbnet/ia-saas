@@ -14,10 +14,13 @@ import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
+import { useProModal } from "@/app/hooks/use-pro-modal";
 import { VideoIcon } from "lucide-react";
 import { formSchema } from "./constants";
 
 export default function VideoPage() {
+  const proModal = useProModal();
+
   const [video, setVideo] = useState<string>();
 
   const router = useRouter();
@@ -37,8 +40,11 @@ export default function VideoPage() {
       setVideo(response.data[0]);
 
       form.reset();
-    } catch (error) {
-      // TODO: Open Pro Modal
+    } catch (error: any) {
+      if (error?.response?.status === 403) {
+        proModal.onOpen();
+      }
+
       console.log(error);
     } finally {
       // form.reset();

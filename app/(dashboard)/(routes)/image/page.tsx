@@ -26,6 +26,7 @@ import { Card, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
 import { amountOptions, formSchema, resolutionOptions } from "./constants";
 
+import { useProModal } from "@/app/hooks/use-pro-modal";
 import { Download, Image as ImageIcon } from "lucide-react";
 
 type userMessage = {
@@ -34,6 +35,8 @@ type userMessage = {
 };
 
 export default function ImagePage() {
+  const proModal = useProModal();
+
   const router = useRouter();
   const [images, setImages] = useState<string[]>([]);
 
@@ -58,9 +61,10 @@ export default function ImagePage() {
       setImages(urls);
 
       form.reset();
-    } catch (error) {
-      // TODO: Open Pro Modal
-      console.log(error);
+    } catch (error: any) {
+      if (error?.response?.status === 403) {
+        proModal.onOpen();
+      }
     } finally {
       // form.reset();
       router.refresh();

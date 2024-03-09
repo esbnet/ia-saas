@@ -20,6 +20,7 @@ import ReactMarkdown from "react-markdown";
 
 import { useForm } from "react-hook-form";
 
+import { useProModal } from "@/app/hooks/use-pro-modal";
 import * as z from "zod";
 import { formSchema } from "./constants";
 
@@ -29,6 +30,8 @@ type userMessage = {
 };
 
 export default function CodePage() {
+  const proModal = useProModal();
+
   const [messages, setMessages] = useState<userMessage[]>([]);
   const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
@@ -60,9 +63,10 @@ export default function CodePage() {
       console.log(messages);
 
       form.reset();
-    } catch (error) {
-      // TODO: Open Pro Modal
-      console.log(error);
+    } catch (error: any) {
+      if (error?.response?.status === 403) {
+        proModal.onOpen();
+      }
     } finally {
       // form.reset();
       router.refresh();
