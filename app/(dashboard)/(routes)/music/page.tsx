@@ -17,6 +17,7 @@ import { useForm } from "react-hook-form";
 import { Heading } from "@/components/heading";
 import { useProModal } from "@/hooks/use-pro-modal";
 import { Music } from "lucide-react";
+import toast from "react-hot-toast";
 import * as z from "zod";
 import { formSchema } from "./constants";
 
@@ -47,9 +48,9 @@ export default function MusicPage() {
     } catch (error: any) {
       if (error?.response?.status === 403) {
         proModal.onOpen();
+      } else {
+        toast.error("Something went wrong");
       }
-
-      console.log(error);
     } finally {
       // form.reset();
       router.refresh();

@@ -2,7 +2,6 @@
 import { useState } from "react";
 
 import Empty from "@/components/empty";
-import Heading from "@/components/heading";
 import Loader from "@/components/loader";
 import BotAvatar from "@/components/ui/bot-avatar";
 import { Button } from "@/components/ui/button";
@@ -21,7 +20,9 @@ import remarkGfm from "remark-gfm";
 
 import { useForm } from "react-hook-form";
 
+import { Heading } from "@/components/heading";
 import { useProModal } from "@/hooks/use-pro-modal";
+import toast from "react-hot-toast";
 import * as z from "zod";
 import { formSchema } from "./constants";
 
@@ -66,6 +67,8 @@ export default function Conversation() {
     } catch (error: any) {
       if (error?.response?.status === 403) {
         proModal.onOpen();
+      } else {
+        toast.error("Something went wrong");
       }
     } finally {
       form.reset();

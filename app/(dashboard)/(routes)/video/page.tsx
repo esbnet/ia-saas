@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 
 import Empty from "@/components/empty";
-import Heading from "@/components/heading";
+import { Heading } from "@/components/heading";
 import Loader from "@/components/loader";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
@@ -16,6 +16,7 @@ import { Input } from "@/components/ui/input";
 
 import { useProModal } from "@/hooks/use-pro-modal";
 import { VideoIcon } from "lucide-react";
+import toast from "react-hot-toast";
 import { formSchema } from "./constants";
 
 export default function VideoPage() {
@@ -43,11 +44,10 @@ export default function VideoPage() {
     } catch (error: any) {
       if (error?.response?.status === 403) {
         proModal.onOpen();
+      } else {
+        toast.error("Something went wrong");
       }
-
-      console.log(error);
     } finally {
-      // form.reset();
       router.refresh();
     }
   };
