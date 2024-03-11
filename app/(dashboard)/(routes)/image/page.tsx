@@ -26,7 +26,7 @@ import { Card, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
 import { amountOptions, formSchema, resolutionOptions } from "./constants";
 
-import { useProModal } from "@/app/hooks/use-pro-modal";
+import { useProModal } from "@/hooks/use-pro-modal";
 import { Download, Image as ImageIcon } from "lucide-react";
 
 type userMessage = {

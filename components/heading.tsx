@@ -9,7 +9,7 @@ interface HeadingProps {
   bgColor?: string;
 }
 
-export default function Heading({
+export function Heading({
   title,
   description,
   icon: Icon,

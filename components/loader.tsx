@@ -6,7 +6,7 @@ export default function Loader() {
       <div className="w-10 h-10 relative animate-spin">
         <Image src="/logo.png" alt="Loading..." fill />
       </div>
-      <p className="text-sm text-muted-foreground">Genius is thinking...</p>
+      <p className="text-sm text-muted-foreground">Sinthetic is thinking...</p>
     </div>
   );
 }

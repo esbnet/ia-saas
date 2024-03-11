@@ -3,7 +3,6 @@
 import { useState } from "react";
 
 import Empty from "@/components/empty";
-import Heading from "@/components/heading";
 import Loader from "@/components/loader";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
@@ -15,7 +14,8 @@ import { useRouter } from "next/navigation";
 
 import { useForm } from "react-hook-form";
 
-import { useProModal } from "@/app/hooks/use-pro-modal";
+import { Heading } from "@/components/heading";
+import { useProModal } from "@/hooks/use-pro-modal";
 import { Music } from "lucide-react";
 import * as z from "zod";
 import { formSchema } from "./constants";

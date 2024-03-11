@@ -21,7 +21,7 @@ import remarkGfm from "remark-gfm";
 
 import { useForm } from "react-hook-form";
 
-import { useProModal } from "@/app/hooks/use-pro-modal";
+import { useProModal } from "@/hooks/use-pro-modal";
 import * as z from "zod";
 import { formSchema } from "./constants";
 
