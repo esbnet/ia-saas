@@ -27,9 +27,14 @@ export default function LandingNavbar() {
         </h1>
       </Link>
       <div className="flex items-center gap-x-2">
+        <Link href={isSignedIn ? "/dashboard" : "/sign-in"}>
+          <Button variant="secondary" className="rounded-full">
+            {isSignedIn ? "Dashboard" : "Login"}
+          </Button>
+        </Link>
         <Link href={isSignedIn ? "/dashboard" : "/sign-up"}>
-          <Button variant={"outline"} className="rounded-full">
-            {isSignedIn ? "Dashboard" : "Get Started"}
+          <Button variant="secondary" className="rounded-full">
+            {isSignedIn ? "Dashboard x" : "Get Started"}
           </Button>
         </Link>
       </div>
