@@ -1,6 +1,6 @@
 # Synthetic
 
-O Synthetic e um modelo de aplicativo SaaS, totalmente funcional que provê um ambiente para gerar conteúdo através de IA. Para utilizá-lo você faz o registro com e-mail ou autorização via rede social (Google ou Facebook, etc). Após o registro a plataforma permite a assinatura do serviço que permite gerar conteúdo através de APIs de Inteligência Artificial.
+O Synthetic e um modelo de aplicativo SaaS, totalmente funcional, mostra, de forma didática, um ambiente para gerar conteúdo através de IA. Para utilizá-lo você faz o registro com e-mail ou autorização via rede social (Google ou Facebook, etc). Após o registro a plataforma permite a assinatura do serviço que permite gerar conteúdo através de APIs de Inteligência Artificial.
 
 Aos interessados, existe a possibilidade de substituir o serviço por qualquer outro, aproveitando a estrutura e os recursos da aplicação. Este modelo foi elaborado para exemplificar, de forma didática, o processo de um modelo de um Micro SaaS.
 
