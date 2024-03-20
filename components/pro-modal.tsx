@@ -17,9 +17,8 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { tools } from "@/constants";
-// import { useProModal } from "@/hooks/use-pro-modal";
+import { useProModal } from "@/hooks/use-pro-modal";
 import { cn } from "@/lib/utils";
-import {useProModal} from "@/app/hooks/use-pro-modal";
 
 export const ProModal = () => {
   const proModal = useProModal();
@@ -44,7 +43,7 @@ export const ProModal = () => {
         <DialogHeader>
           <DialogTitle className="flex justify-center items-center flex-col gap-y-4 pb-2">
             <div className="flex items-center gap-x-2 font-bold text-xl">
-              Upgrade to Genius
+              Upgrade to Synthetic
               <Badge variant="premium" className="uppercase text-sm py-1">
                 pro
               </Badge>

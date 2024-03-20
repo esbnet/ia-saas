@@ -3,7 +3,6 @@
 import { useState } from "react";
 
 import Empty from "@/components/empty";
-import Heading from "@/components/heading";
 import Loader from "@/components/loader";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
@@ -15,11 +14,16 @@ import { useRouter } from "next/navigation";
 
 import { useForm } from "react-hook-form";
 
+import { Heading } from "@/components/heading";
+import { useProModal } from "@/hooks/use-pro-modal";
 import { Music } from "lucide-react";
+import toast from "react-hot-toast";
 import * as z from "zod";
 import { formSchema } from "./constants";
 
 export default function MusicPage() {
+  const proModal = useProModal();
+
   const [music, setMusic] = useState<string>();
 
   const router = useRouter();
@@ -41,9 +45,12 @@ export default function MusicPage() {
       setMusic(response.data.audio);
 
       form.reset();
-    } catch (error) {
-      // TODO: Open Pro Modal
-      console.log(error);
+    } catch (error: any) {
+      if (error?.response?.status === 403) {
+        proModal.onOpen();
+      } else {
+        toast.error("Something went wrong");
+      }
     } finally {
       // form.reset();
       router.refresh();

@@ -1,11 +1,11 @@
 import { Zap } from "lucide-react";
 import { useEffect, useState } from "react";
 
-import { useProModal } from "@/app/hooks/use-pro-modal";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { MAX_FREE_COUNTS } from "@/constants";
+import { useProModal } from "@/hooks/use-pro-modal";
 
 export const FreeCounter = ({
   isPro = false,

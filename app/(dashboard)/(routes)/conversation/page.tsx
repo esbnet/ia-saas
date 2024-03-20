@@ -2,7 +2,6 @@
 import { useState } from "react";
 
 import Empty from "@/components/empty";
-import Heading from "@/components/heading";
 import Loader from "@/components/loader";
 import BotAvatar from "@/components/ui/bot-avatar";
 import { Button } from "@/components/ui/button";
@@ -21,6 +20,9 @@ import remarkGfm from "remark-gfm";
 
 import { useForm } from "react-hook-form";
 
+import { Heading } from "@/components/heading";
+import { useProModal } from "@/hooks/use-pro-modal";
+import toast from "react-hot-toast";
 import * as z from "zod";
 import { formSchema } from "./constants";
 
@@ -30,6 +32,7 @@ type userMessage = {
 };
 
 export default function Conversation() {
+  const proModal = useProModal();
   const [messages, setMessages] = useState<userMessage[]>([]);
   const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
@@ -61,11 +64,14 @@ export default function Conversation() {
       console.log(messages);
 
       form.reset();
-    } catch (error) {
-      // TODO: Open Pro Modal
-      console.log(error);
+    } catch (error: any) {
+      if (error?.response?.status === 403) {
+        proModal.onOpen();
+      } else {
+        toast.error("Something went wrong");
+      }
     } finally {
-      // form.reset();
+      form.reset();
       router.refresh();
     }
   };

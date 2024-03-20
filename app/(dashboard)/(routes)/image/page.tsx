@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 
 import Empty from "@/components/empty";
-import Heading from "@/components/heading";
+import { Heading } from "@/components/heading";
 import Loader from "@/components/loader";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
@@ -26,7 +26,9 @@ import { Card, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
 import { amountOptions, formSchema, resolutionOptions } from "./constants";
 
+import { useProModal } from "@/hooks/use-pro-modal";
 import { Download, Image as ImageIcon } from "lucide-react";
+import toast from "react-hot-toast";
 
 type userMessage = {
   role: "user";
@@ -34,6 +36,8 @@ type userMessage = {
 };
 
 export default function ImagePage() {
+  const proModal = useProModal();
+
   const router = useRouter();
   const [images, setImages] = useState<string[]>([]);
 
@@ -58,9 +62,12 @@ export default function ImagePage() {
       setImages(urls);
 
       form.reset();
-    } catch (error) {
-      // TODO: Open Pro Modal
-      console.log(error);
+    } catch (error: any) {
+      if (error?.response?.status === 403) {
+        proModal.onOpen();
+      } else {
+        toast.error("Something went wrong");
+      }
     } finally {
       // form.reset();
       router.refresh();
